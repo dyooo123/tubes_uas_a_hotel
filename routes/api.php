@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserVerificationController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,9 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('email/verify/{id}', [UserVerificationController::class, 'verify'])->name('verification.verify');
 Route::get('email/resend', [UserVerificationController::class, 'resend'])->name('verification.resend');
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::get('/profile', [UserController::class, 'show']);
+
+    Route::put('/profile', [UserController::class, 'update']);
+    Route::get('/logout', [AuthController::class, 'logout']);
 });
