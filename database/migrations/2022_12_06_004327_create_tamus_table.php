@@ -22,7 +22,9 @@ return new class extends Migration
             $table->string('alamat');
             $table->string('tanggal_lahir');
             $table->string('tgl_checkin');
-            $table->string('tgl_checkout');   
+            $table->string('tgl_checkout');
+            $table->unsignedBigInteger('id_kamar');
+            $table->foreign('id_kamar')->references('id')->on('kamars');
             $table->timestamps();
         });
     }
