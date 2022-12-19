@@ -20,5 +20,17 @@ class Kamar extends Model
         'tipe_kasur',
     ];
 
+    public function getCreatedAttribute(){
+        if(!is_null($this->attributes['created_at'])){
+            return Carbon::parse($this->attributes['created_at'])->format('Y-m-d H:i:s');
+        }
+    }
+
+    public function getUpdatedAttribute(){
+        if(!is_null($this->attributes['update_at'])){
+            return Carbon::parse($this->attributes['update_at'])->format('Y-m-d H:i:s');
+        }
+    }
+
 
 }
