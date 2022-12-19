@@ -21,6 +21,10 @@ class Tamu extends Model
         'id_kamar'
     ];
 
+    public function kamar(){
+        return $this->belongsTo(Kamar::class,'id_kamar');
+    }
+
     public function getCreatedAttribute(){
         if(!is_null($this->attributes['created_at'])){
             return Carbon::parse($this->attributes['created_at'])->format('Y-m-d H:i:s');

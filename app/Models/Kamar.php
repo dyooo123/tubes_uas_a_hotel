@@ -11,7 +11,7 @@ class Kamar extends Model
 
     /**
      * fillable
-     * 
+     *
      * @var array
      */
     protected $fillable = [
@@ -19,4 +19,6 @@ class Kamar extends Model
         'tipe_kamar',
         'tipe_kasur',
     ];
+
+
 }
