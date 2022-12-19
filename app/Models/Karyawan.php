@@ -21,4 +21,6 @@ class Karyawan extends Model
         'no_telp',
         'gaji',
     ];
+
+    
 }
