@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserVerificationController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\KamarController;
+use App\Http\Controllers\TamuController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +26,8 @@ Route::get('email/resend', [UserVerificationController::class, 'resend'])->name(
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/profile', [UserController::class, 'show']);
 
+    Route::apiResource('/kamars', App\Http\Controllers\KamarController::class);
+    Route::apiResource('/tamus', App\Http\Controllers\TamuController::class);
     Route::put('/profile', [UserController::class, 'update']);
     Route::get('/logout', [AuthController::class, 'logout']);
 });

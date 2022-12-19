@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\KamarController;
+use App\Http\Controllers\TamuController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::apiResource('/kamars', App\Http\Controllers\KamarController::class);
+Route::apiResource('/Tamus', App\Http\Controllers\TamuController::class);
+
