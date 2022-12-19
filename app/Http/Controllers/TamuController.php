@@ -16,7 +16,7 @@ class TamuController extends Controller
 //        //render view with posts
 //        return view('tamu.index', compact('tamu'));
         $tamu = Tamu::with(['Kamar'])->latest()->get();
-        return new TamuResource(true,'List Data Tamu', $tamu);
+        return new TamuResource(true,'List Data Kamar', $tamu);
     }
     public function show($id)
     {
@@ -40,23 +40,38 @@ class TamuController extends Controller
     public function store(Request $request)
     {
         //Validasi Formulir
+
         $this->validate($request, [
-            'nama_tamu'=> 'required',
-            'jenis_kelamin'=> 'required',
-            'no_telp'=> 'required',
+            'nama_tamu' => 'required',
+            'email' => 'required',
+            'jenis_kelamin' => 'required',
+            'no_telp' => 'required',
+            'alamat' => 'required',
+            'tanggal_lahir' => 'required',
+            'tgl_checkin' => 'required',
+            'tgl_checkout' => 'required',
             'id_kamar' => 'required',
         ],[
             'nama_tamu.required' => 'Nama Tamu tidak boleh kosong !',
+            'email.required' => 'Email tidak boleh kosong !',
             'jenis_kelamin.required' => 'Kamar harus diisi !',
             'no_telp.required' => 'No Telfon tidak boleh kosong !',
-            'id_kamar.required' => 'Kamar harus diisi !'
+            'tanggal_lahir.required' => 'Tanggal lahir tidak boleh kosong',
+            'tgl_checkin.required' => 'Tanggal Cekin Harus Diisi',
+            'tgl_checkout.required' => 'Tanggal Cekin Harus Diisi',
+            'id_kamar.required' => 'Kamar harus diisi !',
         ]);
         //Fungsi Simpan Data ke dalam Database
         $tamu = Tamu::create([
             'nama_tamu'=> $request->nama_tamu,
+            'email' => $request->email,
             'jenis_kelamin'=> $request->jenis_kelamin,
             'no_telp'=> $request->no_telp,
-            'id_kamar' => $request->id_kamar
+            'alamat' => $request->alamat,
+            'tanggal_lahir' => $request->tanggal_lahir,
+            'tgl_checkin' => $request->tgl_checkin,
+            'tgl_checkout' => $request->tgl_checkout,
+            'id_kamar' => $request->id_kamar,
         ]);
 
         return new TamuResource(true,'Data Tamu berhasil disimpan', $tamu);
@@ -91,18 +106,27 @@ class TamuController extends Controller
         $tamu = Tamu::find($id);
         //validate form
         $this->validate($request, [
-            'nama_tamu'=> 'required',
-            'jenis_kelamin'=> 'required',
-            'no_telp'=> 'required',
-            'id_kamar' => 'required',
+            'nama_tamu' => 'required',
+            'email' => 'required',
+            'jenis_kelamin' => 'required',
+            'no_telp' => 'required',
+            'alamat' => 'required',
+            'tanggal_lahir' => 'required',
+            'tgl_checkin' => 'required',
+            'tgl_checkout' => 'required',
         ]);
 
 
         $tamu->update([
             'nama_tamu'=> $request->nama_tamu,
+            'email' => $request->email,
             'jenis_kelamin'=> $request->jenis_kelamin,
             'no_telp'=> $request->no_telp,
-            'id_kamar' => $request->id_kamar
+            'alamat' => $request->alamat,
+            'tanggal_lahir' => $request->tanggal_lahir,
+            'tgl_checkin' => $request->tgl_checkin,
+            'tgl_checkout' => $request->tgl_checkout,
+            'id_kamar' => $request->id_kamar,
         ]);
 
         return new TamuResource(true,'Data Tamu berhasil dubah', $tamu);

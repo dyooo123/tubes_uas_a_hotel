@@ -16,9 +16,14 @@ class Tamu extends Model
      */
     protected $fillable = [
         'nama_tamu',
+        'email',
         'jenis_kelamin',
         'no_telp',
-        'id_kamar'
+        'alamat',
+        'tanggal_lahir',
+        'tgl_checkin',
+        'tgl_checkout',
+        'id_kamar',
     ];
 
     public function kamar(){
