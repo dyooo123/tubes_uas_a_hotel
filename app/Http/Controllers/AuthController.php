@@ -53,7 +53,7 @@ class AuthController extends Controller
         if(!Auth::attempt($loginData))
             return response(['message' => 'Invalid Credentials'], 401); //mengembalikan error gagal login
 
-//        $user = Auth::user();
+    //    $user = Auth::user();
 //        $token = $user->createToken('Authentication Token')->accessToken; //generate token
         $user = User::where('email', $request->email)->first();
         if (!$user->hasVerifiedEmail()) {
@@ -64,6 +64,7 @@ class AuthController extends Controller
         }
         return response([
             'status' => true,
+            'user' => $user,
             'message' => 'User Logged In Successfully',
             'token' => $user->createToken("API TOKEN")->plainTextToken
         ]); //return data user dan token dalam bentuk json

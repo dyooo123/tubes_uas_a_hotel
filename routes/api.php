@@ -19,10 +19,15 @@ use App\Http\Controllers\TamuController;
 |
 */
 
-Route::post('/register', [AuthController::class, 'register']);
-Route::post('/login', [AuthController::class, 'login']);
+// Route::post('/register', [AuthController::class, 'register']);
+// Route::post('/login', [AuthController::class, 'login']);
+
+Route::post('register', 'AuthController@register');
+Route::post('login', 'AuthController@login');
+
 Route::get('email/verify/{id}', [UserVerificationController::class, 'verify'])->name('verification.verify');
 Route::get('email/resend', [UserVerificationController::class, 'resend'])->name('verification.resend');
+
 Route::group(['middleware' => ['auth:sanctum']], function () {
 Route::get('/profile', [UserController::class, 'show']);
 

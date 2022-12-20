@@ -34,9 +34,11 @@ class KaryawanController extends Controller
     {
      
         $validator = Validator::make($request->all(), [
-            'no_kamar' => 'required',
-            'tipe_kamar' => 'required',
-            'tipe_kasur' => 'required'
+            'nama_karyawan' => 'required',
+            'jenis_kelamin' => 'required',
+            'alamat' => 'required',
+            'no_telp' => 'required',
+            'gaji' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -44,9 +46,12 @@ class KaryawanController extends Controller
         }
         //Fungsi Post ke Database
         $karyawan = Karyawan::create([
-            'no_kamar' => $request->no_kamar,
-            'tipe_kamar' => $request->tipe_kamar,
-            'tipe_kasur' => $request->tipe_kasur
+            'nama_karyawan' => $request->nama_karyawan,
+            'jenis_kelamin' => $request->jenis_kelamin,
+            'alamat' => $request->alamat,
+            'no_telp' => $request->no_telp,
+            'gaji' => $request->gaji
+
         ]);
         return new KaryawanResource(true, 'Data Karyawan Berhasil Ditambahkan!', $karyawan);
 
@@ -65,16 +70,20 @@ class KaryawanController extends Controller
         $karyawan = Karyawan::find($id);
         //validate form
         $this->validate($request, [
-            'no_kamar' => 'required',
-            'tipe_kamar' => 'required',
-            'tipe_kasur' => 'required'
+            'nama_karyawan' => 'required',
+            'jenis_kelamin' => 'required',
+            'alamat' => 'required',
+            'no_telp' => 'required',
+            'gaji' => 'required'
         ]);
 
 
         $karyawan->update([
-            'no_kamar' => $request->no_kamar,
-            'tipe_kamar' => $request->tipe_kamar,
-            'tipe_kasur' => $request->tipe_kasur
+            'nama_karyawan' => $request->nama_karyawan,
+            'jenis_kelamin' => $request->jenis_kelamin,
+            'alamat' => $request->alamat,
+            'no_telp' => $request->no_telp,
+            'gaji' => $request->gaji
         ]);
         return new KaryawanResource(true, 'Data Karyawan Berhasil Diupdate!', $karyawan);
         //return redirect()->route('karyawan.index')->with(['success' => 'Data Berhasil Diubah!']);
