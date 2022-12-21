@@ -26,7 +26,7 @@ Route::post('register', 'AuthController@register');
 Route::post('login', 'AuthController@login');
 Route::get('user', 'UserController@index');
 
-
+Route::get('email/verify/{id}', [UserVerificationController::class, 'verify'])->name('verification.verify');
 Route::group(['middleware' => ['auth:sanctum']], function () {
 Route::get('/profile', [UserController::class, 'show']);
 
