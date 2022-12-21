@@ -24,7 +24,7 @@ use App\Http\Controllers\TamuController;
 
 Route::post('register', 'AuthController@register');
 Route::post('login', 'AuthController@login');
-
+Route::get('profile', [UserController::class, 'index']);
 
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
@@ -33,6 +33,7 @@ Route::get('/profile', [UserController::class, 'show']);
     Route::apiResource('/kamars', App\Http\Controllers\KamarController::class);
     Route::apiResource('/tamus', App\Http\Controllers\TamuController::class);
     Route::apiResource('/karyawans', App\Http\Controllers\KaryawanController::class);
+
     Route::put('/profile', [UserController::class, 'update']);
     Route::get('/logout', [AuthController::class, 'logout']);
 });
