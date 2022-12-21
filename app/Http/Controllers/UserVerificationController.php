@@ -21,13 +21,5 @@ class UserVerificationController extends Controller
         return redirect()->to('/');
     }
 
-    public function resend() {
-        if (auth()->user()->hasVerifiedEmail()) {
-            return response()->json(["msg" => "Email already verified."], 400);
-        }
 
-        auth()->user()->sendEmailVerificationNotification();
-
-        return response()->json(["msg" => "Email verification link sent on your email id"]);
-    }
 }

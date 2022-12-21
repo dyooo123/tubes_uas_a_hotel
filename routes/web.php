@@ -19,6 +19,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//Route::apiResource('/kamars', App\Http\Controllers\KamarController::class);
-//Route::apiResource('/tamus', App\Http\Controllers\TamuController::class);
+
 
