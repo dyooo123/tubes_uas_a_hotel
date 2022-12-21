@@ -24,7 +24,7 @@ use App\Http\Controllers\TamuController;
 
 Route::post('register', 'AuthController@register');
 Route::post('login', 'AuthController@login');
-Route::get('profile', [UserController::class, 'index']);
+Route::get('user', 'UserController@index');
 
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
