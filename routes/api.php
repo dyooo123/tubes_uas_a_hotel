@@ -25,6 +25,7 @@ use App\Http\Controllers\TamuController;
 Route::post('register', 'AuthController@register');
 Route::post('login', 'AuthController@login');
 Route::get('user', 'UserController@index');
+Route::delete('user/{id}', 'UserController@destroy');
 
 Route::get('email/verify/{id}', [UserVerificationController::class, 'verify'])->name('verification.verify');
 Route::group(['middleware' => ['auth:sanctum']], function () {
